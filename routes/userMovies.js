@@ -9,7 +9,7 @@ const { createUserMovieSchema } = require('../utils/schemas/userMovies');
 
 function userMoviesApi(app) {
   const router = express.Router();
-  app.user('/api/user-movies', router);
+  app.use('/api/user-movies', router);
 
   const userMoviesService = new UserMoviesService();
 
@@ -42,7 +42,7 @@ function userMoviesApi(app) {
 
       res.status(201).json({
         data: createdUserMovieId,
-        message: 'user movie created';
+        message: 'user movie created'
       });
     } catch (error) {
       next(error)
@@ -63,7 +63,7 @@ function userMoviesApi(app) {
         message: 'user movie deleted'
       });
     } catch (error) {
-      
+      next(error);
     }
   });
 }

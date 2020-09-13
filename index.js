@@ -2,8 +2,10 @@ const express = require('express');
 const app = express();
 
 const { config } = require('./config/index');
+
+const authApi = require('./routes/auth');
 const moviesApi = require('./routes/movies.js');
-const userMoviesApi = require('./router/userMovies.js');
+const userMoviesApi = require('./routes/userMovies.js');
 
 const { 
   logErrors, wrapErrors, errorHandler
@@ -15,6 +17,7 @@ const notFoundHandler = require('./utils/middleware/notFoundHandler');
 app.use(express.json());
 
 // routes
+authApi(app);
 moviesApi(app); // Las rutas también son middleware. Los middlware error van despueste de las rutas.
 userMoviesApi(app);
 
